@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>land back &#8211; Gesturing Towards Decolonial Futures</title>
+	<atom:link href="https://decolonialfutures.net/tag/land-back/feed/" rel="self" type="application/rss+xml" />
+	<link>https://decolonialfutures.net</link>
+	<description></description>
+	<lastBuildDate>Sat, 11 Mar 2023 22:52:08 +0000</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>http://wordpress.com/</generator>
+
+<image>
+	<url>https://decolonialfutures.net/wp-content/uploads/2018/02/cropped-2017-02-06-21-14-25-copy11.jpg?w=32</url>
+	<title>land back &#8211; Gesturing Towards Decolonial Futures</title>
+	<link>https://decolonialfutures.net</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+<site xmlns="com-wordpress:feed-additions:1">142353389</site><cloud domain='decolonialfutures.net' port='80' path='/?rsscloud=notify' registerProcedure='' protocol='http-post' />
+<source:cloud xmlns:source='https://source.scripting.com/'>https://decolonialfutures.net/?rsscloud=notify</source:cloud>
+<atom:link rel="search" type="application/opensearchdescription+xml" href="https://decolonialfutures.net/osd.xml" title="Gesturing Towards Decolonial Futures" />
+	<atom:link rel='hub' href='https://decolonialfutures.net/?pushpress=hub'/>
+	<item>
+		<title>Returning lands</title>
+		<link>https://decolonialfutures.net/2023/02/10/returning-lands/</link>
+					<comments>https://decolonialfutures.net/2023/02/10/returning-lands/#respond</comments>
+		
+		<dc:creator><![CDATA[VOA]]></dc:creator>
+		<pubDate>Fri, 10 Feb 2023 21:28:29 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[land back]]></category>
+		<guid isPermaLink="false">http://decolonialfutures.net/?p=3643</guid>
+
+					<description><![CDATA[This set of depth education diagnostic exercises was created as a thought experiment for settlers to engage with some of the tensions and complexities that often emerge in discussions about returning land to Indigenous peoples in what is currently known as Canada. The set of exercises is grounded on the current context of Indigenous land &#8230; <p class="link-more"><a href="https://decolonialfutures.net/2023/02/10/returning-lands/" class="more-link">Continue reading<span class="screen-reader-text"> "Returning lands"</span></a></p>]]></description>
+										<content:encoded><![CDATA[<p>This set of depth education diagnostic exercises was created as a thought experiment for settlers to engage with some of the tensions and complexities that often emerge in discussions about returning land to Indigenous peoples in what is currently known as Canada. The set of exercises is grounded on the current context of Indigenous land &hellip; <p class="link-more"><a href="https://decolonialfutures.net/2023/02/10/returning-lands/" class="more-link">Continue reading<span class="screen-reader-text"> "Returning lands"</span></a></p></p>]]></content:encoded>
+					
+					<wfw:commentRss>https://decolonialfutures.net/2023/02/10/returning-lands/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">3643</post-id>
+		<media:thumbnail url="https://decolonialfutures.net/wp-content/uploads/2023/02/screen-shot-2023-03-02-at-5.11.25-am.png" />
+		<media:content url="https://decolonialfutures.net/wp-content/uploads/2023/02/screen-shot-2023-03-02-at-5.11.25-am.png" medium="image">
+			<media:title type="html">Screen Shot 2023-03-02 at 5.11.25 AM</media:title>
+		</media:content>
+
+		<media:content url="https://1.gravatar.com/avatar/af5c9c0b4c58951d209f4400f9ec4ebb7c8023441cd074132b25004c8beff353?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">metarelationaltech</media:title>
+		</media:content>
+	</item>
+	</channel>
+</rss>

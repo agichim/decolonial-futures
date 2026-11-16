@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+	<ShortName>decolonialfuture</ShortName>
+	<Description>Search Gesturing Towards Decolonial Futures - </Description>
+	<Contact>help@wordpress.com</Contact>
+	<Url type="application/atom+xml" template="https://decolonialfutures.net/?s={searchTerms}&amp;feed=atom" />
+	<Url type="rss+xml" template="https://decolonialfutures.net/?s={searchTerms}&amp;feed=rss2" />
+	<Url type="text/html" template="https://decolonialfutures.net/?s={searchTerms}" method="GET" />
+	<Url type="application/opensearchdescription+xml" rel="self" template="https://decolonialfutures.net/osd.xml" />
+	<LongName>Gesturing Towards Decolonial Futures</LongName>
+	<Image height="16" width="16" type="image/vnd.microsoft.icon">https://decolonialfutures.net/wp-content/uploads/2018/02/cropped-2017-02-06-21-14-25-copy11.jpg?w=16</Image>
+	<Image height="64" width="64" type="image/jpeg">https://decolonialfutures.net/wp-content/uploads/2018/02/cropped-2017-02-06-21-14-25-copy11.jpg?w=64</Image>
+	<Query role="example" searchTerms="photography" />
+	<Tags>podcast podcasts-carmen-ramos david-lam-chair masterclass ibpoc edi land-back amazon</Tags>
+	<Developer>Automattic</Developer>
+	<SyndicationRight>open</SyndicationRight>
+	<AdultContent>false</AdultContent>
+	<Language>en</Language>
+	<OutputEncoding>UTF-8</OutputEncoding>
+	<InputEncoding>UTF-8</InputEncoding>
+	<moz:SearchForm>https://decolonialfutures.net</moz:SearchForm>
+</OpenSearchDescription>
