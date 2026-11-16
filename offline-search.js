@@ -81,7 +81,8 @@ function gsInit(script){
    "#gs-res{position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid #999;box-shadow:0 4px 12px rgba(0,0,0,.2);max-height:70vh;overflow:auto;display:none}"+
    "#gs-res .gs-i{padding:.5rem .7rem;border-bottom:1px solid #eee}#gs-res .gs-t{font-weight:bold}#gs-res .gs-s{font-size:.85em;color:#444;margin-top:.15rem}"+
    "#gs-res .gs-n{padding:.4rem .7rem;font-size:.85em;color:#666}#gs-res mark{background:#ffe680}"+
-   "#gs-foot{margin:3rem 0 1rem;padding-top:1rem;border-top:1px solid #ccc;font:13px/1.5 Georgia,serif;color:#555}#gs-foot a{color:#1a4f8a}";
+   "#gs-foot{margin:3rem 0 1rem;padding-top:1rem;border-top:1px solid #ccc;font:13px/1.5 Georgia,serif;color:#555}#gs-foot a{color:#1a4f8a}"+
+   ".gs-media-note{margin:.5rem 0 1rem;padding:.4rem .7rem;border-left:3px solid #999;background:#f6f6f6;font:14px/1.5 Georgia,serif;color:#333}";
   document.head.appendChild(css);
 
   var bar=document.createElement("div");bar.id="gs-bar";
@@ -99,6 +100,22 @@ function gsInit(script){
     'The site states that its resources are open access under Creative Commons but does not specify which licence here; check the original or ask the authors before reusing. '+
     'This copy is unofficial.';
   document.body.appendChild(ft);
+
+  var MEDIA=/^https?:\/\/(www\.)?decolonialfutures\.net\/.*\.(mp3|m4a|wav|ogg|oga|flac|aac|mp4|m4v|webm|mov)(\?|#|$)/i;
+  function addMediaNotes(){
+    Array.prototype.forEach.call(document.querySelectorAll("audio[src],video[src],source[src],a[href]"),function(el){
+      var isA=el.tagName==="A",u=el.getAttribute(isA?"href":"src");
+      if(!u||!MEDIA.test(u)||bar.contains(el)||ft.contains(el)||el.closest(".gs-media-note"))return;
+      var seen=Array.prototype.some.call(document.querySelectorAll(".gs-media-note"),function(n){return n.getAttribute("data-src")===u;});
+      if(seen)return;
+      var host=isA?(el.closest("p,li")||el):(el.closest("figure,.mejs-container")||(el.tagName==="SOURCE"?el.parentNode:el));
+      if(!host||!host.parentNode)return;
+      var note=document.createElement("div");note.className="gs-media-note";note.setAttribute("data-src",u);
+      note.innerHTML='This media can be played on the original website: <a href="'+orig+'" target="_blank" rel="noopener">open the original post</a>.';
+      host.parentNode.insertBefore(note,host.nextSibling);
+    });
+  }
+  addMediaNotes();window.addEventListener("load",addMediaNotes);setTimeout(addMediaNotes,1500);
 
   function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   var first=null,timer=null;
