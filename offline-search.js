@@ -76,8 +76,8 @@ function gsInit(script){
   if(doClean){clean();window.addEventListener("load",clean);setTimeout(clean,1500);}
 
   var css=document.createElement("style");
-  css.textContent="#gs-bar{position:sticky;top:0;z-index:99999;background:#fff;border-bottom:1px solid #ccc;padding:.5rem 0;display:flex;gap:.8rem;align-items:center;font:15px Georgia,serif}"+
-   "#gs-bar a{white-space:nowrap}#gs-q{flex:1;padding:.4rem .6rem;font:inherit;border:1px solid #999;border-radius:4px}"+
+  css.textContent="#gs-bar{position:sticky;top:0;z-index:99999;background:#fff;border-bottom:1px solid #ccc;padding:.5rem 0;display:block;font:15px Georgia,serif}"+
+   "#gs-links{margin:0 0 .4rem}#gs-links a{margin-right:1.4rem;white-space:nowrap}#gs-q{width:100%;box-sizing:border-box;padding:.4rem .6rem;font:inherit;border:1px solid #999;border-radius:4px}"+
    "#gs-res{position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid #999;box-shadow:0 4px 12px rgba(0,0,0,.2);max-height:70vh;overflow:auto;display:none}"+
    "#gs-res .gs-i{padding:.5rem .7rem;border-bottom:1px solid #eee}#gs-res .gs-t{font-weight:bold}#gs-res .gs-s{font-size:.85em;color:#444;margin-top:.15rem}"+
    "#gs-res .gs-n{padding:.4rem .7rem;font-size:.85em;color:#666}#gs-res mark{background:#ffe680}"+
@@ -87,11 +87,14 @@ function gsInit(script){
   document.head.appendChild(css);
 
   var bar=document.createElement("div");bar.id="gs-bar";
-  var home=document.createElement("a");home.href=root+"offline-index.html";home.textContent="\u2190 Index";
+  var links=document.createElement("div");links.id="gs-links";
+  [["Home",root+"home.html"],["Index",root+"offline-index.html"],["Disclaimer",root+"disclaimer.html"]].forEach(function(l){
+    var a=document.createElement("a");a.href=l[1];a.textContent=l[0];links.appendChild(a);
+  });
   var input=document.createElement("input");input.id="gs-q";input.type="text";input.setAttribute("autocomplete","off");
   input.placeholder="Search titles and content of all pages\u2026";
   var out=document.createElement("div");out.id="gs-res";
-  bar.appendChild(home);bar.appendChild(input);bar.appendChild(out);
+  bar.appendChild(links);bar.appendChild(input);bar.appendChild(out);
   document.body.insertBefore(bar,document.body.firstChild);
 
   var orig=gsOrigUrl(location.pathname,root);
