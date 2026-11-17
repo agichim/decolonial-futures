@@ -2,6 +2,7 @@
 
 [Main site](https://agichim.github.io/decolonial-futures/)  
 [Index](https://agichim.github.io/decolonial-futures/offline-index.html)
+[Disclaimer](https://agichim.github.io/decolonial-futures/disclaimer.html)
 
 ## Disclaimer
 
