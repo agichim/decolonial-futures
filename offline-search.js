@@ -88,7 +88,7 @@ function gsInit(script){
 
   var bar=document.createElement("div");bar.id="gs-bar";
   var links=document.createElement("div");links.id="gs-links";
-  [["Home",root+"home.html"],["Index",root+"offline-index.html"],["Disclaimer",root+"disclaimer.html"]].forEach(function(l){
+  [["Home",root+"index.html"],["Index",root+"offline-index.html"],["Disclaimer",root+"disclaimer.html"]].forEach(function(l){
     var a=document.createElement("a");a.href=l[1];a.textContent=l[0];links.appendChild(a);
   });
   var input=document.createElement("input");input.id="gs-q";input.type="text";input.setAttribute("autocomplete","off");
