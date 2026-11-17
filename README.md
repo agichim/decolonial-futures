@@ -1,6 +1,6 @@
 # Decolonial Futures (unofficial copy)
 
-[Main site](https://agichim.github.io/decolonial-futures/)
+[Main site](https://agichim.github.io/decolonial-futures/)  
 [Index](https://agichim.github.io/decolonial-futures/offline-index.html)
 
 ## Disclaimer
