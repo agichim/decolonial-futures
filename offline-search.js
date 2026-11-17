@@ -56,7 +56,7 @@ function gsInit(script){
       var up=p.parentNode;if(!up)break;up.removeChild(p);p=up;}
   }
   function clean(){
-    var sel="nav,button,form,.wp-block-search,.wp-block-jetpack-subscriptions,.wp-block-navigation,[class*='subscri'],input[type=submit],input[type=email]";
+    var sel="nav,button,form,.wp-block-search,.wp-block-jetpack-subscriptions,.wp-block-navigation,[class*='subscri'],input[type=submit],input[type=email],.comment-body .reply,.comment-likes,.akismet_comment_form_privacy_notice,#jp-post-flair,.jp-relatedposts";
     Array.prototype.forEach.call(document.querySelectorAll(sel),function(e){
       if(e===document.body||e===document.documentElement||!document.body.contains(e))return;
       var p=e.parentNode;p.removeChild(e);dropEmpty(p);
@@ -82,7 +82,8 @@ function gsInit(script){
    "#gs-res .gs-i{padding:.5rem .7rem;border-bottom:1px solid #eee}#gs-res .gs-t{font-weight:bold}#gs-res .gs-s{font-size:.85em;color:#444;margin-top:.15rem}"+
    "#gs-res .gs-n{padding:.4rem .7rem;font-size:.85em;color:#666}#gs-res mark{background:#ffe680}"+
    "#gs-foot{margin:3rem 0 1rem;padding-top:1rem;border-top:1px solid #ccc;font:13px/1.5 Georgia,serif;color:#555}#gs-foot a{color:#1a4f8a}"+
-   ".gs-media-note{margin:.5rem 0 1rem;padding:.4rem .7rem;border-left:3px solid #999;background:#f6f6f6;font:14px/1.5 Georgia,serif;color:#333}";
+   ".gs-media-note{margin:.5rem 0 1rem;padding:.4rem .7rem;border-left:3px solid #999;background:#f6f6f6;font:14px/1.5 Georgia,serif;color:#333}"+
+   ".gs-sep{border:0;border-top:2px solid #999;margin:2.5rem 0 1.5rem}.gs-reply-note{margin:1rem 0 2rem;padding:.6rem .8rem;border-left:3px solid #999;background:#f6f6f6;font:14px/1.5 Georgia,serif;color:#333}";
   document.head.appendChild(css);
 
   var bar=document.createElement("div");bar.id="gs-bar";
@@ -98,24 +99,48 @@ function gsInit(script){
   ft.innerHTML='Offline copy of <a href="https://decolonialfutures.net/" target="_blank" rel="noopener">decolonialfutures.net</a> (Gesturing Towards Decolonial Futures, GTDF). '+
     'The content comes from the GTDF collective and its contributors. Original page: <a href="'+orig+'" target="_blank" rel="noopener">'+orig+'</a>. '+
     'The site states that its resources are open access under Creative Commons but does not specify which licence here; check the original or ask the authors before reusing. '+
-    'This copy is unofficial.';
+    'This copy is unofficial. <a href="'+root+'disclaimer.html">Read the disclaimers</a>.';
   document.body.appendChild(ft);
 
-  var MEDIA=/^https?:\/\/(www\.)?decolonialfutures\.net\/.*\.(mp3|m4a|wav|ogg|oga|flac|aac|mp4|m4v|webm|mov)(\?|#|$)/i;
+  var MEDIAEXT=/\.(mp3|m4a|wav|ogg|oga|flac|aac|mp4|m4v|webm|mov)(\?|#|$)/i;
   function addMediaNotes(){
-    Array.prototype.forEach.call(document.querySelectorAll("audio[src],video[src],source[src],a[href]"),function(el){
-      var isA=el.tagName==="A",u=el.getAttribute(isA?"href":"src");
-      if(!u||!MEDIA.test(u)||bar.contains(el)||ft.contains(el)||el.closest(".gs-media-note"))return;
-      var seen=Array.prototype.some.call(document.querySelectorAll(".gs-media-note"),function(n){return n.getAttribute("data-src")===u;});
+    function noteFor(host,key){
+      if(!host||!host.parentNode||host.getAttribute("data-gs-noted"))return;
+      var seen=Array.prototype.some.call(document.querySelectorAll(".gs-media-note"),function(n){return key&&n.getAttribute("data-src")===key;});
+      host.setAttribute("data-gs-noted","1");
       if(seen)return;
-      var host=isA?(el.closest("p,li")||el):(el.closest("figure,.mejs-container")||(el.tagName==="SOURCE"?el.parentNode:el));
-      if(!host||!host.parentNode)return;
-      var note=document.createElement("div");note.className="gs-media-note";note.setAttribute("data-src",u);
+      var note=document.createElement("div");note.className="gs-media-note";note.setAttribute("data-src",key||"");
       note.innerHTML='This media can be played on the original website: <a href="'+orig+'" target="_blank" rel="noopener">open the original post</a>.';
       host.parentNode.insertBefore(note,host.nextSibling);
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("audio,video"),function(el){
+      if(bar.contains(el)||ft.contains(el))return;
+      var src=el.getAttribute("src")||(el.querySelector("source")&&el.querySelector("source").getAttribute("src"))||"";
+      noteFor(el.closest("figure,.mejs-container")||el,src);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("a[href]"),function(el){
+      var u=el.getAttribute("href");
+      if(!u||!MEDIAEXT.test(u)||el.closest("audio,video,#gs-bar,#gs-foot,.gs-media-note"))return;
+      noteFor(el.closest("p,li")||el,u);
     });
   }
   addMediaNotes();window.addEventListener("load",addMediaNotes);setTimeout(addMediaNotes,1500);
+
+  function replyNote(){
+    var c=document.getElementById("comments"),r=document.getElementById("respond");
+    if(!c&&!r)return;
+    if(!document.getElementById("gs-reply-note")){
+      var anchor=c||r;
+      var hr=document.createElement("hr");hr.id="gs-sep";hr.className="gs-sep";
+      anchor.parentNode.insertBefore(hr,anchor);
+      var note=document.createElement("div");note.id="gs-reply-note";note.className="gs-reply-note";
+      note.innerHTML='All replies on this page were written on the <a href="'+orig+'" target="_blank" rel="noopener">original website</a>. This website does not allow replying: it is a static copy. <a href="'+root+'disclaimer.html">Read the disclaimers</a>.';
+      if(r&&r.parentNode)r.parentNode.insertBefore(note,r);else c.appendChild(note);
+    }
+    var rr=document.getElementById("respond");
+    if(rr&&rr.parentNode)rr.parentNode.removeChild(rr);
+  }
+  if(doClean){replyNote();window.addEventListener("load",replyNote);setTimeout(replyNote,1500);}
 
   function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   var first=null,timer=null;
